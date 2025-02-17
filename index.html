@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day - Yes or No</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7e0d2;
+            text-align: center;
+            padding: 50px;
+            position: relative;
+            height: 100vh;
+            overflow: hidden; /* Ensure no scrollbars appear */
+        }
+
+        h1 {
+            color: #e63946;
+            font-size: 3em;
+        }
+
+        .buttons-container {
+            margin-top: 50px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button {
+            font-size: 2em;
+            padding: 20px 40px;
+            margin: 20px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .yes {
+            background-color: #e63946;
+            color: white;
+        }
+
+        .no {
+            background-color: #f1faee;
+            color: #1d3557;
+        }
+
+        .yes:hover {
+            background-color: #d12d2b;
+        }
+
+        .no:hover {
+            background-color: #a8dadc;
+        }
+
+        #gif-container {
+            display: none;
+            margin-top: 30px;
+        }
+
+        #gif-container img {
+            width: 220px;
+            border-radius: 10px;
+        }
+
+        #yipeeee-text {
+            font-size: 2em;
+            color: #2a9d8f;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Will you be my Valentine?</h1>
+
+    <div class="buttons-container">
+        <button class="button yes" onclick="handleYes()">Yes</button>
+        <button class="button no" onclick="handleNo()">No</button>
+    </div>
+
+    <div id="gif-container">
+        <img src="nyinyigif.gif" alt="Valentine's Day Gif">
+        <div id="yipeeee-text">Yipeeee!</div>
+    </div>
+
+    <script>
+        let yesButtonSize = 1; // Track the size of the Yes button
+
+        function handleYes() {
+            // Hide the buttons when Yes is clicked
+            const yesButton = document.querySelector('.yes');
+            const noButton = document.querySelector('.no');
+            yesButton.style.display = 'none';
+            noButton.style.display = 'none';
+
+            // Show the gif and the "Yipeeee!" text when Yes is clicked
+            const gifContainer = document.getElementById('gif-container');
+            gifContainer.style.display = 'block';
+        }
+
+        function handleNo() {
+            const yesButton = document.querySelector('.yes');
+            const noButton = document.querySelector('.no');
+            
+            // Increase the size of the Yes button with each "No" click
+            yesButton.style.transform = `scale(${1 + yesButtonSize * 0.2})`;
+            yesButtonSize++; // Increment the size factor
+
+            // Randomly move the No button to a new position
+            const maxX = window.innerWidth - noButton.offsetWidth - 20; // Prevent overlap with screen edge
+            const maxY = window.innerHeight - noButton.offsetHeight - 20; // Prevent overlap with screen edge
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+    </script>
+
+</body>
+</html>
